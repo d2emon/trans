@@ -4,7 +4,7 @@
   "description": "Transport system database",
   "main": "src/manage.py",
   "scripts": {
-    "preinstall": "git pull && pip install -r requirements.txt && flask db upgrade && bower install",
+    "preinstall": "node scripts/preinstall.js",
     "prestart": "gulp",
     "start": "python src/manage.py runserver",
     "test": "src/test.py"
@@ -34,6 +34,7 @@
     "gulp-pug": "^3.3.0"
   },
   "dependencies": {
-    "gulpfile": "git+https://github.com/d2emon/gulpfile.git"
+    "gulpfile": "git+https://github.com/d2emon/gulpfile.git",
+    "shelljs": "^0.7.8"
   }
 }
