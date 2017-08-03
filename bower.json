@@ -1,0 +1,24 @@
+{
+  "name": "trans",
+  "description": "Transport system database",
+  "main": "src/manage.py",
+  "authors": [
+    "Dmitry Kutsenko <d2emonium@gmail.com>"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "transport",
+    "database",
+    "flask"
+  ],
+  "homepage": "https://github.com/d2emon/trans",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/bower_components",
+    "test",
+    "tests"
+  ]
+}
