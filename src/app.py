@@ -38,6 +38,9 @@ def create_app(debug=False, config_name='production'):
 
     # from execom import models
 
+    from trans.blueprint import trans as trans_blueprint
+    app.register_blueprint(trans_blueprint)
+
     return app, db
 
 
