@@ -9,38 +9,38 @@ block navbrand
 block navbar
   ul(class="nav navbar-nav")
     li
-      a(href="{{ url_for('list_protocols') }}") Протоколы
+      a(href="{{ url_for('trans.homepage') }}") Протоколы
     li
-      a(href="{{ url_for('list_decisions') }}") Решения
+      a(href="{{ url_for('trans.homepage') }}") Решения
     li
-      a(href="{{ url_for('list_resolutions') }}") Постановления
+      a(href="{{ url_for('trans.homepage') }}") Постановления
     li(class="dropdown")
       a(href="#", class="dropdown-toggle", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Добавить <span class="caret"></span>
       ul(class="dropdown-menu")
         li
-          a(href="{{ url_for('edit_resolution') }}") Постановление
+          a(href="{{ url_for('trans.homepage') }}") Постановление
         li
-          a(href="{{ url_for('edit_decision') }}") Решение
+          a(href="{{ url_for('trans.homepage') }}") Решение
         li
-          a(href="{{ url_for('edit_protocol') }}") Протокол
+          a(href="{{ url_for('trans.homepage') }}") Протокол
         li
-          a(href="{{ url_for('edit_case') }}") Дело
+          a(href="{{ url_for('trans.homepage') }}") Дело
         li
-          a(href="{{ url_for('edit_register') }}") Опись
+          a(href="{{ url_for('trans.homepage') }}") Опись
     li(class="dropdown")
       a(href="#", class="dropdown-toggle", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Справочники <span class="caret"></span>
       ul(class="dropdown-menu")
         li
-          a(href="{{ url_for('list_cases') }}") Дела
+          a(href="{{ url_for('trans.homepage') }}") Дела
         li
-          a(href="{{ url_for('list_registers') }}") Описи
+          a(href="{{ url_for('trans.homepage') }}") Описи
 
 block style
-  link(href="{{ url_for('static', filename='css/dropzone.min.css') }}", rel="stylesheet")
+  // link(href="{{ url_for('static', filename='css/dropzone.min.css') }}", rel="stylesheet")
   link(href="{{ url_for('static', filename='css/main.css') }}", rel="stylesheet")
   | {% block style %}{% endblock %}
 
 block script
-  script(src="{{ url_for('static', filename='js/dropzone.min.js') }}")
+  // script(src="{{ url_for('static', filename='js/dropzone.min.js') }}")
   script(src="{{ url_for('static', filename='js/index.js') }}")
   | {% block script %}{% endblock %}
