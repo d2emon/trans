@@ -20,5 +20,11 @@
     "assets/bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "crud-assets": "git+https://github.com/d2emon/crud-assets.git"
+  }
 }
