@@ -37,9 +37,9 @@ class Config(object):
     BACKUP_PATH = os.path.join(BASE_DIR, "db", "backup")
     DB_FILENAME = "trans.db"
     BACKUP_FILENAME = "trans.%s.db"
-    # SQLALCHEMY_DATABASE_URI = "sqlite:////%s/%s" % (DB_PATH, DB_FILENAME)
+    SQLALCHEMY_DATABASE_URI = "sqlite:////%s/%s" % (DB_PATH, DB_FILENAME)
     # SQLALCHEMY_DATABASE_URI = "sqlite:///../db/%s" % (DB_FILENAME)
-    SQLALCHEMY_DATABASE_URI = "sqlite:///../db/%s" % (DB_FILENAME)
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///../db/%s" % (DB_FILENAME)
 
     VIEW_CASE = "edit_case"
 

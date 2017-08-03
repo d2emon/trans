@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from config import BASE_DIR, app_config
 
@@ -26,9 +26,6 @@ def create_app(debug=False, config_name='production'):
     app.static_folder = os.path.join(BASE_DIR, app.config.get('STATIC_FOLDER', 'static'))
     app.template_folder = os.path.join(BASE_DIR, app.config.get('TEMPLATE_FOLDER', 'templates'))
 
-    app.logger.debug(app.config)
-    app.logger.debug(app.config.get('SQLALCHEMY_DATABASE_URI'))
-
     # Session(app)
 
     db = SQLAlchemy(app)
@@ -51,6 +48,7 @@ debug = os.environ.get('FLASK_DEBUG', False)
 config_name = os.environ.get('FLASK_CONFIG', 'production')
 app, db = create_app(config_name=config_name)
 manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 
 
 # from execom.commands import *
