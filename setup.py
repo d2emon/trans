@@ -48,15 +48,16 @@ build_exe_options = {
 
 base = None
 setup(
-    name='flask-template',
+    name='trans',
     version=version,
     keywords=[
-        "template",
+        "transport",
+        "database",
         "flask"
     ],
-    description='Template for Flask projects',
+    description='Transport database',
     long_description=long_description,
-    url='https://github.com/d2emon/flask-template#readme',
+    url='https://github.com/d2emon/trans#readme',
     executables = [Executable("manage.py", base=base, icon=r"assets/favicon/favicon.ico")],
 
     author='Dmitry Kutsenko',
