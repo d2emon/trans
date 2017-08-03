@@ -16,6 +16,7 @@ try:
 except locale.Error:
     locale.setlocale(locale.LC_ALL, 'ru_RU.utf8')
 
+import re
 
 class Config(object):
     DEBUG = False
@@ -37,9 +38,12 @@ class Config(object):
     BACKUP_PATH = os.path.join(BASE_DIR, "db", "backup")
     DB_FILENAME = "trans.db"
     BACKUP_FILENAME = "trans.%s.db"
-    SQLALCHEMY_DATABASE_URI = "sqlite:////%s/%s" % (DB_PATH, DB_FILENAME)
+    SQLALCHEMY_DATABASE_URI = "sqlite:///%s" % (os.path.join(DB_PATH, DB_FILENAME))
+    # SQLALCHEMY_DATABASE_URI = "sqlite:////%s" % (os.path.join(DB_PATH, DB_FILENAME).replace("\\", "/"))
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///D:/work/eclipse/trans/db/trans.db"
+
     # SQLALCHEMY_DATABASE_URI = "sqlite:///../db/%s" % (DB_FILENAME)
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///../db/%s" % (DB_FILENAME)
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///db/%s" % (DB_FILENAME)
 
     VIEW_CASE = "edit_case"
 
