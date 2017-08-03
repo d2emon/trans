@@ -4,7 +4,7 @@
   "description": "Transport system database",
   "main": "src/manage.py",
   "scripts": {
-    "preinstall": "node scripts/preinstall.js",
+    "preinstall": "git pull",
     "install": "node scripts/install.js",
     "prestart": "gulp",
     "start": "python src/manage.py runserver",
