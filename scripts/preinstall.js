@@ -6,7 +6,7 @@ shell.exec('git pull');
 
 console.log("Updating pip modules");
 shell.exec("pip install -r requirements.txt");
-// flask db upgrade
+shell.exec("flask db upgrade");
 
 console.log("Installing bower");
 shell.exec("bower install");

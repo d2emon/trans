@@ -25,7 +25,10 @@ def create_app(debug=False, config_name='production'):
     app.config.from_object(app_config[config_name])
     app.static_folder = os.path.join(BASE_DIR, app.config.get('STATIC_FOLDER', 'static'))
     app.template_folder = os.path.join(BASE_DIR, app.config.get('TEMPLATE_FOLDER', 'templates'))
-    
+
+    app.logger.debug(app.config)
+    app.logger.debug(app.config.get('SQLALCHEMY_DATABASE_URI'))
+
     # Session(app)
 
     db = SQLAlchemy(app)
@@ -50,6 +53,6 @@ app, db = create_app(config_name=config_name)
 manager = Manager(app)
 
 
-from execom.commands import *
-from execom.views import *
-from case.views import *
+# from execom.commands import *
+# from execom.views import *
+# from case.views import *
