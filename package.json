@@ -5,6 +5,7 @@
   "main": "src/manage.py",
   "scripts": {
     "preinstall": "node scripts/preinstall.js",
+    "install": "node scripts/install.js",
     "prestart": "gulp",
     "start": "python src/manage.py runserver",
     "test": "src/test.py"
