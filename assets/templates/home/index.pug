@@ -4,11 +4,58 @@ block content
   include ../_panel.pug
   .row
     .col-md-6
-      div Text1
-      div Edit1
-      div Memo1
-      +panel("Переходы", false, true, true)
-        | Column 1
+      | {% if location %}
+      +panel("{{ location.name }} ({{ location.id }})", false, true, true)
+        div
+          div(class="well well-sm")
+            | &nbsp;
+            a(href="{{ url_for('trans.edit_location') }}", class="btn btn-sm btn-primary", datat-toggle="tooltip", title="Новая")
+              i(class="fa fa-plus")
+            | &nbsp;
+            a(href="{{ url_for('trans.edit_location', location_id=location.id) }}", class="btn btn-sm btn-primary", datat-toggle="tooltip", title="Редактировать")
+              i(class="fa fa-edit")
+        div {{ location.description }}
+        | {% if location.links %}
+        div
+          .table-responsive
+            table(class="table table-bordered table-hover")
+              block table_headers
+                thead
+                  tr
+                    th(class="col-md-2 col-lg-2 col-sm-2")
+                      | &nbsp;
+                    th(class="col-md-2 col-lg-2 col-sm-2")
+                      a(href="?order=1") 
+                        | № 
+                        i(class="fa fa-arrows-v pull-right")
+                    th
+                      a(href="?order=2") 
+                        | Название 
+                        i(class="fa fa-arrows-v pull-right")
+              tbody
+                | {% for i in location.links %}
+                tr
+                  block row_controls
+
+                  block row_data
+                    td
+                      center
+                        div(class="btn-group btn-group-xs")
+                          a(href="{ url_for('list_resolutions', decision_id=i.id) }", class="btn btn-sm btn-primary" data-toggle="tooltip", title="Просмотреть")
+                            i(class="fa fa-search")
+                          a(href="{ url_for('edit_decision', decision_id=i.id) }", class="btn btn-sm btn-primary" data-toggle="tooltip", title="Редактировать")
+                            i(class="fa fa-edit")
+                          a(data-href="{ url_for('del_decision', decision_id=i.id) }", class="btn btn-sm btn-primary confirm" data-toggle="modal", title="Удалить", data-text="Вы уверены, что хотите удалить эту запись?", data-target="#confirm-del")
+                            i(class="fa fa-eraser")
+                    td {{ i.id }}  
+                    td {{ i.name }}  
+
+                | {% endfor %}
+        | {% else %}
+        .panel-body
+          h3 Список пуст
+        | {% endif %}
+      | {% endif %}
     .col-md-6
       .row
         .col-md-6

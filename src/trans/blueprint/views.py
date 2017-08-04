@@ -13,14 +13,10 @@ def homepage():
     """
     Render the homepage template on the / route
     """
-    locations = Location.query.all()
-    print(locations)
     location = Location.query.first()
-    print(location)
     return render_template(
         'home/index.html',
         title="Добро пожаловать",
-        locations=locations,
         location=location
     )
 
@@ -42,8 +38,8 @@ def edit_location(location_id=None):
 
     form = LocationForm()
     if form.validate_on_submit():
-        location.name=form.name.data
-        location.description=form.description.data
+        location.name = form.name.data
+        location.description = form.description.data
         try:
             location.save()
             if add_location:
@@ -68,6 +64,7 @@ def edit_location(location_id=None):
         action=action,
         add_location=add_location,
         form=form,
+        links=location.links,
         title="%s Локацию" % (action, )
     )
 
