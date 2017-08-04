@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+from flask_bootstrap import Bootstrap
 from config import BASE_DIR, app_config
 
 
@@ -26,6 +27,8 @@ def create_app(debug=False, config_name='production'):
     app.static_folder = os.path.join(BASE_DIR, app.config.get('STATIC_FOLDER', 'static'))
     app.template_folder = os.path.join(BASE_DIR, app.config.get('TEMPLATE_FOLDER', 'templates'))
 
+    bootstrap = Bootstrap(app)
+
     # Session(app)
 
     db = SQLAlchemy(app)
@@ -37,9 +40,6 @@ def create_app(debug=False, config_name='production'):
     migrate = Migrate(app, db)
 
     # from trans import models
-
-    from trans.blueprint import trans as trans_blueprint
-    app.register_blueprint(trans_blueprint)
 
     return app, db
 
@@ -54,6 +54,9 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 from trans import models
+
+from trans.blueprint import trans as trans_blueprint
+app.register_blueprint(trans_blueprint)
 
 
 # from execom.commands import *

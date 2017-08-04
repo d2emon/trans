@@ -1,9 +1,11 @@
 # from flask import abort, render_template
 # from flask_login import current_user, login_required
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 
 
 from . import trans
+from .forms import LocationForm
+from ..models import Location
 
 
 @trans.route('/')
@@ -11,16 +13,63 @@ def homepage():
     """
     Render the homepage template on the / route
     """
-    return render_template('home/index.html', title="Welcome")
+    locations = Location.query.all()
+    print(locations)
+    location = Location.query.first()
+    print(location)
+    return render_template(
+        'home/index.html',
+        title="Добро пожаловать",
+        locations=locations,
+        location=location
+    )
 
 
-# @login_required
-@trans.route('/dashboard')
-def dashboard():
+@trans.route('/location/add', methods=['GET', 'POST'])
+@trans.route('/location/edit/<int:location_id>', methods=['GET', 'POST'])
+def edit_location(location_id=None):
     """
-    Render the dashboard template on the /dashboard route
+    Edit location or add new location
     """
-    return render_template('home/dashboard.html', title="Dashboard")
+    # check_admin()
+
+    add_location = (location_id is None)
+
+    if add_location:
+        location = Location()
+    else:
+        location = Location.query.get_or_404(location_id)
+
+    form = LocationForm()
+    if form.validate_on_submit():
+        location.name=form.name.data
+        location.description=form.description.data
+        try:
+            location.save()
+            if add_location:
+                flash('Новая локация успешно создана.')
+            else:
+                flash('Локация успешно отредактирована.')
+
+        except:
+            flash('Ошибка')
+        return redirect(url_for('trans.homepage'))
+
+    form.name.data = location.name
+    form.description.data = location.description
+
+    if add_location:
+        action = "Добавить"
+    else:
+        action = "Редактировать"
+
+    return render_template(
+        'home/edit_location.html',
+        action=action,
+        add_location=add_location,
+        form=form,
+        title="%s Локацию" % (action, )
+    )
 
 
 # @login_required

@@ -1,0 +1,12 @@
+extends ../_trans.pug
+
+block content
+  | {% import "bootstrap/wtf.html" as wtf %}
+  .content-section
+    .outer
+      .middle
+        .inner
+          .center
+            h1 {{ title }}
+            br
+            | {{ wtf.quick_form(form) }}

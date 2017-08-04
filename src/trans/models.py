@@ -13,10 +13,14 @@ class Location(db.Model):
     description = db.Column(db.UnicodeText, info={'label': "Описание"})
 
     def __repr__(self):
-        return self.name
+        return str(self.name)
 
     def randomize(self, fake):
         self.name = fake.pyint()
         chance = random.randint(0, 100)
         if chance < 25:
             self.description = "\n".join(fake.paragraphs())
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
