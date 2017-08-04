@@ -36,7 +36,7 @@ def create_app(debug=False, config_name='production'):
 
     migrate = Migrate(app, db)
 
-    # from execom import models
+    # from trans import models
 
     from trans.blueprint import trans as trans_blueprint
     app.register_blueprint(trans_blueprint)
@@ -52,6 +52,8 @@ config_name = os.environ.get('FLASK_CONFIG', 'production')
 app, db = create_app(config_name=config_name)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+
+from trans import models
 
 
 # from execom.commands import *
