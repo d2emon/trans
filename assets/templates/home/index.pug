@@ -1,11 +1,72 @@
 extends ../_trans.pug
 
 block content
+  include ../_panel.pug
   .row
     .col-md-6
-      | Column 1
+      div Text1
+      div Edit1
+      div Memo1
+      +panel("Переходы", false, true, true)
+        | Column 1
     .col-md-6
-      | Column 2
+      .row
+        .col-md-6
+          +panel("Транспорт", false, true, true)
+            div
+              div(class="well well-sm")
+                | &nbsp;
+                a(href="{ url_for('edit_protocol', protocol_id=protocol.id) }", class="btn btn-sm btn-primary", datat-toggle="tooltip", title="Редактировать")
+                  i(class="fa fa-edit")
+        
+                .pull-right
+                  a(href="{ url_for('edit_case', case_id=protocol.case_id) }") {protocol.case}
+            .panel-body
+              | { if protocol.description }
+              | { protocol.description }
+              | { else }
+              | <strong>Решений:</strong> { items.total}
+              | { endif }
+        .col-md-6
+          +panel("Транспорт", false, true, true)
+            div
+              div(class="well well-sm")
+                | &nbsp;
+                a(href="{ url_for('edit_protocol', protocol_id=protocol.id) }", class="btn btn-sm btn-primary", datat-toggle="tooltip", title="Редактировать")
+                  i(class="fa fa-edit")
+        
+                .pull-right
+                  a(href="{ url_for('edit_case', case_id=protocol.case_id) }") {protocol.case}
+            .panel-body
+              | { if protocol.description }
+              | { protocol.description }
+              | { else }
+              | <strong>Решений:</strong> { items.total}
+              | { endif }
+      .row
+        .col-md-12
+          div(class="panel panel-primary")
+            .panel-heading
+              h4.panel-title Остановки
+            div
+              div(class="well well-sm")
+                | &nbsp;
+                a(href="{ url_for('edit_protocol', protocol_id=protocol.id) }", class="btn btn-sm btn-primary", datat-toggle="tooltip", title="Редактировать")
+                  i(class="fa fa-edit")
+        
+                .pull-right
+                  a(href="{ url_for('edit_case', case_id=protocol.case_id) }") {protocol.case}
+            .panel-body
+              | { if protocol.description }
+              | { protocol.description }
+              | { else }
+              | <strong>Решений:</strong> { items.total}
+              | { endif }
+      .row
+        .col-md-12
+          .pull-right
+            a(href="{ url_for('edit_case', case_id=protocol.case_id) }", class="btn btn-default") Button 1
+
 
   block panel_master
     | {% if protocol %}
@@ -28,7 +89,6 @@ block content
         | {% endif %}
     | {% endif %}
 
-  include ../_panel.pug
   +panel("Справочник", false, true, true)
     block items
       | {% if items %}
